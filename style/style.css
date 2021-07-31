@@ -34,6 +34,7 @@
     background-color: white;
     margin-bottom: 10px;
     position: relative;
+    overflow: hidden;
 }
 
 .image__upper-label{
@@ -45,6 +46,7 @@
     line-height: 30px;
     font-family: 'Raleway-Medium';
     color: white;
+    z-index: 3;
 }
 
 .item__image img{
@@ -52,18 +54,30 @@
     max-height: 200px;
     max-width: 200px;
     margin: 0 auto;
+    transform:scale(1);
+    transition: all .3s linear;
+    z-index: 0;
 }
 
 .image__down-label{
     background-color: rgba(255, 255, 255, 0.452);
     position: absolute;
-    bottom: 5px;
+    bottom: -50px;
     width: 100%;
     height: 25%;
     text-align: center;
     line-height: 50px;
     font-family: 'Raleway-Medium';
-    visibility: hidden;
+    transition: bottom .3s linear;
+    z-index: 3;
+}
+
+.item__image:hover .image__down-label{
+    bottom: 0;
+}
+
+.item__image:hover img{
+    transform: scale(1.5);
 }
 
 .item__name{
@@ -74,6 +88,7 @@
     padding: 5px 0;
     margin-bottom: 10px;
     text-transform: capitalize;
+    white-space: nowrap;
 }
 
 .item__price{
@@ -86,3 +101,69 @@
     text-decoration:line-through;
 }
 
+@media (max-width: 1024px) {
+    .wrapper{
+        max-width: 1024px;
+    }
+    .content{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .item__image{
+        width: 150px;
+        height: 150px;
+    }
+    .image__upper-label{
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .item__image img{
+        max-width: 150px;
+        max-height: 150px;
+    }
+    .image__down-label{
+        font-size: 14px;
+        line-height: 40px;
+    }
+    .item__name{
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 3px;
+    }
+    .item__price{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wrapper{
+        max-width: 767px;
+    }
+    .content{
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+    .item__image{
+        width: 100px;
+        height: 100px;
+    }
+    .image__upper-label{
+        font-size: 10px;
+        line-height: 16px;
+    }
+    .item__image img{
+        max-width: 100px;
+        max-height: 100px;
+    }
+    .image__down-label{
+        font-size: 10px;
+        line-height: 30px;
+    }
+    .item__name{
+        font-size: 10px;
+        margin-bottom: 2px;
+        line-height: 0;
+    }
+    .item__price{
+        font-size: 10px;
+    }
+}
